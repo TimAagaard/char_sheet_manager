@@ -1,0 +1,110 @@
+<div *ngIf="character">
+<h2>{{character.name}}'s Details</h2>
+	<table>
+		<tr>
+			<td><label for="character-name">Name: </label></td>
+			<td><input id="character-name" [(ngModel)]="character.name" placeholder="Name"></td>
+		</tr>
+		
+		<tr>
+			<td><label for="character-strength">Strength: </label></td>
+			<td><input id="character-strength" [(ngModel)]="character.strength" placeholder="Strength"></td>
+		</tr>
+		
+		<tr>
+			<td><label for="character-dexterity">Dexterity: </label></td>
+			<td><input id="character-dexterity" [(ngModel)]="character.dexterity" placeholder="Dexterity"></td>
+		</tr>
+		
+		<tr>
+			<td><label for="character-mind">Mind: </label></td>
+			<td><input id="character-mind" [(ngModel)]="character.mind" placeholder="Mind"></td>
+		</tr>
+		
+		<tr>
+			<td><label for="character-presence">Presence: </label></td>
+			<td><input id="character-presence" [(ngModel)]="character.presence" placeholder="Presence"></td>
+		</tr>
+		<tr>
+			<td><label for="character-damage">Damage: </label></td>
+			<td><button (click)="character.decrementDamage()" mat-icon-button>-</button><input id="character-damage" [(ngModel)]="character.damage" placeholder="Damage"><button (click)="character.incrementDamage()" mat-icon-button>+</button></td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td>Vitality: </td>
+			<td>{{character.getVitality()}}</td>
+		</tr>
+		<tr>
+			<td>Evasion: </td>
+			<td>{{character.getEvasion()}}</td>
+		</tr>
+		<tr>
+			<td>Armor: </td>
+			<td>{{character.getArmor()}}</td>
+		</tr>
+		<tr>
+			<td>Alacrity: </td>
+			<td>{{character.getAlacrity()}}</td>
+		</tr>
+		<tr>
+			<td>Tenacity: </td>
+			<td><button (click)="character.decrementTenacity()" mat-icon-button>-</button>{{character.getTenacity()}}<button (click)="character.incrementTenacity()" mat-icon-button>+</button></td>
+		</tr>
+		<tr>
+			<td>Power: </td>
+			<td>{{character.getPower()}}</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td class="colhead">Strength</td>
+			<td class="colhead">Dexterity</td>
+			<td class="colhead">Mind</td>
+			<td class="colhead">Presence</td>
+		</tr>
+		<tr>
+			<td class="vtop">Fighting {{character.skills.strength.fighting}}<button (click)="character.incrementSkill('strfighting')" mat-icon-button>+</button></td>
+			<td class="vtop">
+				Fighting: {{character.skills.dexterity.fighting}}<button (click)="character.incrementSkill('dexfighting')" mat-icon-button>+</button>
+				<br>
+				Thievery: {{character.skills.dexterity.thievery}}<button (click)="character.incrementSkill('dexthievery')" mat-icon-button>+</button>
+				<br>
+				Stealth: {{character.skills.dexterity.stealth}}<button (click)="character.incrementSkill('dexstealth')" mat-icon-button>+</button>
+				<br>
+				Archery: {{character.skills.dexterity.archery}}<button (click)="character.incrementSkill('dexarchery')" mat-icon-button>+</button>
+			</td>
+			<td class="vtop">
+				Learned: {{character.skills.mind.learned}}<button (click)="character.incrementSkill('mindlearned')" mat-icon-button>+</button>
+				<br>
+				Survival: {{character.skills.mind.survival}}<button (click)="character.incrementSkill('mindsurvival')" mat-icon-button>+</button>
+				<br>
+				Perception: {{character.skills.mind.perception}}<button (click)="character.incrementSkill('mindperception')" mat-icon-button>+</button>
+				<br>
+				Apothecary: {{character.skills.mind.apothecary}}<button (click)="character.incrementSkill('mindapothecary')" mat-icon-button>+</button>
+				<br>
+				Power: {{character.skills.mind.power}}<button (click)="character.incrementSkill('mindpower')" mat-icon-button>+</button>
+			</td>
+			<td class="vtop">
+				Intimidation: {{character.skills.presence.intimidation}}<button (click)="character.incrementSkill('presintimidation')" mat-icon-button>+</button>
+				<br>
+				Performance: {{character.skills.presence.performance}}<button (click)="character.incrementSkill('presperformance')" mat-icon-button>+</button>
+				<br>
+				Manipulation: {{character.skills.presence.manipulation}}<button (click)="character.incrementSkill('presmanipulation')" mat-icon-button>+</button>
+				<br>
+				Insight: {{character.skills.presence.insight}}<button (click)="character.incrementSkill('presinsight')" mat-icon-button>+</button>
+				<br>
+				Power: {{character.skills.presence.power}}<button (click)="character.incrementSkill('prespower')" mat-icon-button>+</button>
+			</td>
+		</tr>
+	</table>
+	
+	<div>
+		<button (click)="exportCharacter()" mat-raised-button color="accent">Export Character</button>
+		
+		<input type="file" accept=".json" style="display: none;" (change)="importCharacter($event)" #importcharacterfileupload>
+		<button (click)="importcharacterfileupload.click()" mat-raised-button color="accent">Import Character</button>
+	</div>
+</div>
